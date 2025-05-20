@@ -4,10 +4,8 @@ using DDDExample.Domain.Events;
 
 namespace DDDExample.Infrastructure;
 
-public class BankingDbContext : DbContext
+public class BankingDbContext(DbContextOptions<BankingDbContext> options) : DbContext(options)
 {
-    public BankingDbContext(DbContextOptions<BankingDbContext> options) : base(options) { }
-
     public DbSet<BankAccount> BankAccounts => Set<BankAccount>();
     public DbSet<Event> Events => Set<Event>();
 
