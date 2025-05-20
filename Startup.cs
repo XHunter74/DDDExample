@@ -22,7 +22,7 @@ public class Startup
         services.AddDbContext<BankingDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DbConnection")));
 
-        services.AddScoped<BankAccountRepository>();
+        services.AddScoped<IBankAccountRepository, BankAccountRepository>();
     }
 
     public void Configure(IApplicationBuilder builder, IWebHostEnvironment env)

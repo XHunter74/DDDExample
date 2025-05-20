@@ -2,7 +2,7 @@ using DDDExample.Domain.Entities;
 
 namespace DDDExample.Infrastructure.Repositories;
 
-public class BankAccountRepository : IRepository<BankAccount>
+public class BankAccountRepository : IBankAccountRepository
 {
     private readonly BankingDbContext _context;
 
