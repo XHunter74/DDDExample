@@ -1,6 +1,7 @@
 ﻿using DDDExample.Extensions;
 using DDDExample.Infrastructure;
 using DDDExample.Infrastructure.Repositories;
+using DDDExample.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -29,6 +30,7 @@ public class Startup
                 options.UseNpgsql(Configuration.GetConnectionString("DbConnection")));
 
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+        services.AddScoped<AccountService>();
     }
 
     public void Configure(IApplicationBuilder builder, IWebHostEnvironment env)
