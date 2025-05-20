@@ -1,3 +1,6 @@
+using DDDExample.Extensions;
+using Serilog;
+
 namespace DDDExample;
 
 public class Program
@@ -6,13 +9,15 @@ public class Program
     {
         CreateHostBuilder(args)
             .Build()
-            //.ApplyDbMigrations()
+            .ApplyDbMigrations()
             .Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
         return Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+            .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
+            .UseSerilog((context, configuration) =>
+                configuration.ReadFrom.Configuration(context.Configuration));
     }
 }

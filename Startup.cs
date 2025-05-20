@@ -1,6 +1,8 @@
-﻿using DDDExample.Infrastructure;
+﻿using DDDExample.Extensions;
+using DDDExample.Infrastructure;
 using DDDExample.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace DDDExample;
 
@@ -15,6 +17,10 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddLogging(e =>
+        {
+            e.AddSerilog();
+        });
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -32,6 +38,8 @@ public class Startup
             builder.UseSwagger();
             builder.UseSwaggerUI();
         }
+
+        builder.UseAppExceptionHandler();
 
         builder.UseHttpsRedirection();
 
