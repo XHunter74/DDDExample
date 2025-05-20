@@ -4,6 +4,7 @@ using DDDExample.Infrastructure.Repositories;
 using DDDExample.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using DDDExample.Domain.Events;
 
 namespace DDDExample;
 
@@ -31,6 +32,7 @@ public class Startup
 
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();
         services.AddScoped<AccountService>();
+        services.AddScoped<IDomainEventDispatcher, DatabaseDomainEventDispatcher>();
     }
 
     public void Configure(IApplicationBuilder builder, IWebHostEnvironment env)
